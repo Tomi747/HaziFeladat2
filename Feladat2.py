@@ -66,6 +66,50 @@ def feladat_5(n):
             max_oszto=oszto_db
     print(eredmeny)
 
+def feladat_6(a,b):
+    kozos=0
+    a_szamjegyek=[]
+    b_szamjegyek=[]
+    while a > 0:
+        szamjegy_a=a%10
+        if szamjegy_a not in a_szamjegyek:
+            a_szamjegyek.append(szamjegy_a)
+        a=a//10
+    while b>0:
+        szamjegy_b = b % 10
+        if szamjegy_b not in b_szamjegyek:
+            b_szamjegyek.append(szamjegy_b)
+        b = b // 10
+    for i in a_szamjegyek:
+        if i in b_szamjegyek:
+            kozos=kozos+1
+    if kozos>=2:
+        return "Rokonok"
+    else:
+        return "Nem rokonok"
+
+def feladat_7(a,b):
+    kozos=0
+    a_szamjegyek=[]
+    b_szamjegyek=[]
+    while a > 0:
+        szamjegy_a=a%10
+        if szamjegy_a not in a_szamjegyek:
+            a_szamjegyek.append(szamjegy_a)
+        a=a//10
+    while b>0:
+        szamjegy_b = b % 10
+        if szamjegy_b not in b_szamjegyek:
+            b_szamjegyek.append(szamjegy_b)
+        b = b // 10
+    for i in a_szamjegyek:
+        if i in b_szamjegyek:
+            kozos=kozos+1
+    if kozos>=1:
+        return "Barátok"
+    else:
+        return "Nem barátok"
+
 def feladat_8(n):
     s=1
     db=1
@@ -128,6 +172,22 @@ def feladat_12():
     except Exception as e:
         return e
 
+def feladat_13():
+    try:
+        fajl=open("be.txt",mode="r")
+        db=0
+        hossz=0
+        for sor in fajl:
+            for k in sor:
+                hossz=hossz+1
+        for i in range(hossz-1):
+            for j in range(i+1,i+2):
+                if abs(int(sor[i])-int(sor[j]))<=int(sor[-1]):
+                    db=db+1
+        print(db)
+    except Exception as e:
+        print(e)
+
 def feladat_15():
     try:
         fajl1=open("be.txt", mode="r")
@@ -147,10 +207,14 @@ def main():
     print(feladat_3(513))
     feladat_4()
     feladat_5(1000)
+    print(feladat_6(17654,134))
+    print(feladat_7(1442,1))
     print(feladat_8(51))
     print(feladat_9())
     feladat_10()
     feladat_11()
     feladat_12()
+    feladat_13()
+    feladat_15()
 if __name__ == '__main__':
     main()
