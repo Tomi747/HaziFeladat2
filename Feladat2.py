@@ -1,4 +1,5 @@
 import math
+import sys
 
 def feladat_1(n):
     osztok=[n]
@@ -14,7 +15,7 @@ def feladat_1(n):
 
 def feladat_2(n):
     primek=[]
-    k=1
+    k=2
     while k!=0:
         oszto_db=1
         for i in range(1,int(k/2)+1):
@@ -130,9 +131,9 @@ def feladat_9():
 
 def feladat_10():
     try:
-        fajl=open("be.txt", mode="r")
+        fajl1=open("be.txt", mode="r")
         max_hossz=-math.inf
-        for sor in fajl:
+        for sor in fajl1:
             sor=sor.strip()
             hossz=len(sor)
             if sor[0].isupper() and hossz>max_hossz:
@@ -143,10 +144,10 @@ def feladat_10():
 
 def feladat_11():
     try:
-        fajl=open("be.txt", mode="r")
+        fajl1=open("be.txt", mode="r")
         max_hossz=-math.inf
         abc="aábcdeéfghiíjklmnopqrstuúüűvwxyz"
-        for sor in fajl:
+        for sor in fajl1:
             sor=sor.strip()
             hossz=len(sor)
             if sor[-1] not in abc and hossz>max_hossz:
@@ -157,11 +158,11 @@ def feladat_11():
 
 def feladat_12():
     try:
-        fajl=open("be.txt", mode="r")
+        fajl1=open("be.txt", mode="r")
         fajl2=open("ki.txt",mode="w")
-        for sor in fajl:
-            db = int(sor[-1])
-            egyforma=0
+        for sor in fajl1:
+            db=int(sor[-1])
+            egyforma=1
             for i in range(1,len(sor)-1):
                 if sor[i]==sor[i+1]:
                     egyforma=egyforma+1
@@ -170,14 +171,14 @@ def feladat_12():
         else:
             fajl2.write("False")
     except Exception as e:
-        return e
+        print(e)
 
 def feladat_13():
     try:
-        fajl=open("be.txt",mode="r")
+        fajl1=open("be.txt",mode="r")
         db=0
         hossz=0
-        for sor in fajl:
+        for sor in fajl1:
             for k in sor:
                 hossz=hossz+1
         for i in range(hossz-1):
@@ -194,12 +195,226 @@ def feladat_15():
         fajl2=open("ki.txt", mode="w")
         for sor in fajl1:
             if sor!="\n":
+                sor=sor.strip()
                 fajl2.write(sor)
-
+                fajl2.write("\n")
+            else:
+                break
     except Exception as e:
-        return (e)
+        print(e)
     fajl1.close()
     fajl2.close()
+
+def feladat_16():
+    try:
+        fajll=open("be.txt", mode="r")
+        fajl2=open("ki.txt",mode="w")
+        for sor in fajll:
+            sor=sor.strip()
+            nagy=True
+            szavak=sor.split(" ")
+            for szo in szavak:
+                if szo[0].islower():
+                    nagy=False
+            if nagy:
+                fajl2.write(sor)
+                return
+    except Exception as e:
+        print(e)
+    fajl1.close()
+    fajl2.close()
+def feladat_17():
+    try:
+        fajl1=open("be.txt",mode="r")
+        fajl2=open("ki.txt",mode="w")
+        for sor in fajl1:
+            sor=sor.strip()
+            szavak=sor.split(" ")
+            for i in szavak:
+                if i.islower():
+                    fajl2.write(i)
+                    return
+    except Exception as e:
+        print(e)
+    fajl.close()
+    fajl2.close()
+
+def feladat_18():
+    try:
+        fajl1=open("be.txt", mode="r")
+        csapat1=""
+        csapat2=""
+        gyozelmek1=0
+        gyozelmek2=0
+        gyoztesek=[]
+        sor_szam=0
+        for sor in fajl1:
+            sor_szam+=1
+            sor=sor.strip()
+            lista=sor.split(" ")
+            if sor_szam==1:
+                csapat1=lista[0]
+                csapat2=lista[2]
+            eredmenyek=lista[-1].split(":")
+            if int(eredmenyek[0])>int(eredmenyek[1]):
+                gyoztesek.append(lista[0])
+            else:
+                gyoztesek.append(lista[2])
+        for i in range(len(gyoztesek)):
+            if gyoztesek[i]==csapat1:
+                gyozelmek1+=1
+            else:
+                gyozelmek2+=1
+        if gyozelmek1>gyozelmek2:
+            print(csapat1)
+        else:
+            print(csapat2)
+    except Exception as e:
+        print(e)
+    fajl1.close()
+
+def feladat_19():
+    try:
+        fajl1=open("be.txt", mode="r", encoding="utf-8")
+        legtobb_szam=0
+        legjobb_oldal=""
+        for sor in fajl1:
+            sor=sor.strip()
+            sor=sor.split(" ")
+            if int(sor[1])>legtobb_szam:
+                legtobb_szam=int(sor[1])
+                legjobb_oldal=sor[0]
+        print(legjobb_oldal)
+    except Exception as e:
+        print(e)
+    fajl1.close()
+
+def feladat_20():
+    try:
+        fajll=open("be1.txt",encoding="UTF-8",mode="r")
+        fajl2=open("ki.txt",encoding="UTF-8",mode="w")
+        max_varos=""
+        max_lakos=math.inf
+        for sor in fajl:
+            sor=sor.strip()
+            varos=sor[0]
+            lakosok=sor[2]
+            if lakosok>max_lakos:
+                max_lakos=lakosok
+                max_varos=varos
+        fajl2.write(varos)
+    except Exception as e:
+        print(e)
+
+def feladat_21():
+    try:
+        fajl1=open("be.txt", mode="r", encoding="utf-8")
+        maxpont=0
+        bajnok=""
+        for sor in fajl1:
+            sor=sor.strip()
+            pontok=0
+            lista=sor.split(";")
+            for i in range(len(lista)):
+                if i!=0:
+                    pontok=pontok+int(lista[i])
+            if pontok>maxpont:
+                maxpont=pontok
+                bajnok=lista[0]
+        print(bajnok)
+    except Exception as e:
+        print(e)
+    fajl1.close()
+
+
+def feladat_22():
+    try:
+        fajl1=open("be.txt", mode="r")
+        fajl2=open("ki.txt", mode="w")
+        leggyorsabb_nev=""
+        leggyorsabb_ido=math.inf
+        for sor in fajl1:
+            sor=sor.strip()
+            sor=sor.split(";")
+            nev=sor[0]
+            ido=float(sor[2])
+            if ido<leggyorsabb_ido:
+                leggyorsabb_ido=ido
+                leggyorsabb_nev=nev
+        fajl2.write(leggyorsabb_nev)
+    except Exception as e:
+        print(e)
+    fajl1.close()
+    fajl2.close()
+
+def feladat_23():
+    try:
+        fajl1=open("be.txt", mode="r", encoding="utf-8")
+        egyenes=True
+        elozo_sor=0
+        for sor in fajl1:
+            if int(sor)>=int(elozo_sor):
+                elozo_sor=sor
+            else:
+                egyenes=False
+        if egyenes:
+            print("YES")
+        else:
+            print("NO")
+    except Exception as e:
+        print(e)
+    fajl1.close()
+
+def feladat_24():
+    try:
+        fajl1=open("be.txt", mode="r", encoding="utf-8")
+        teki=0
+        csiga=0
+        sor_szama=0
+        for sor in fajl1:
+            sor_szama=sor_szama+1
+            sor=sor.strip()
+            sor=sor.split(" ")
+            if sor_szama==2:
+                for i in range(len(sor)):
+                    teki=teki+int(sor[i])
+            elif sor_szama==3:
+                for j in range(len(sor)):
+                    csiga=csiga+int(sor[j])
+        if teki>csiga:
+            print(teki*2)
+            print("TURTLE")
+        elif csiga>teki:
+            print(csiga*2)
+            print("SNAIL")
+        else:
+            print(csiga*2)
+            print("DRAW")
+
+    except Exception as e:
+        print(e)
+    fajl1.close()
+
+def feladat_25():
+    try:
+        fajl1=open("be.txt", mode="r", encoding="utf-8")
+        sor_szam=0
+        angol=[]
+        magyar=[]
+        for sor in fajl1:
+            sor_szam=sor_szam+1
+            if sor_szam!=1:
+                sor=sor.strip()
+                szo=sor.split(":")
+                if szo[0] not in angol:
+                    angol.append(szo[0])
+                if szo[1] not in magyar:
+                    magyar.append(szo[1])
+        print(len(angol))
+        print(len(magyar))
+    except Exception as e:
+        print(e)
+    fajl1.close()
 
 def main():
     print(feladat_1(8))
@@ -216,5 +431,15 @@ def main():
     feladat_12()
     feladat_13()
     feladat_15()
+    feladat_16()
+    feladat_17()
+    feladat_18()
+    feladat_19()
+    feladat_20()
+    feladat_21()
+    feladat_22()
+    feladat_23()
+    feladat_24()
+    feladat_25()
 if __name__ == '__main__':
     main()
